@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:register/model.dart';
 import 'firstscreen.dart';
-
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(DevicePreview(builder: (context) => const MyApp()));
+  runApp(
+    DevicePreview(
+      builder: (context) => ChangeNotifierProvider(
+        create: (context) => Model(),
+        child: const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
