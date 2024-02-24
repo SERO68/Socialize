@@ -143,7 +143,7 @@ class Register extends StatelessWidget {
                                         labelText: 'Your Name'),
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter your email address';
+                                        return 'Please enter your name';
                                       }
                                       return null;
                                     },
@@ -163,7 +163,7 @@ class Register extends StatelessWidget {
                                         labelText: 'Password'),
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter your email address';
+                                        return 'Please enter your Password';
                                       }
                                       return null;
                                     },

@@ -146,7 +146,7 @@ class Login extends StatelessWidget {
                                         labelText: 'Password'),
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter your email address';
+                                        return 'Please enter your Password';
                                       }
                                       return null;
                                     },
@@ -178,7 +178,7 @@ class Login extends StatelessWidget {
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(
-                                                  10.0), // Change this to your desired radius
+                                                  10.0), 
                                             ),
                                           ),
                                           backgroundColor:
