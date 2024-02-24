@@ -127,6 +127,12 @@ class Login extends StatelessWidget {
                                       if (value == null || value.isEmpty) {
                                         return 'Please enter your email address';
                                       }
+
+                                      if (value.length < 8 ||
+                                          !value.contains('@')) {
+                                        return 'Please enter a correct email address';
+                                      }
+
                                       return null;
                                     },
                                   ),
@@ -147,6 +153,15 @@ class Login extends StatelessWidget {
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Please enter your Password';
+                                      }
+                                     if (!value.contains(RegExp(r'[A-Z]')) &&
+                                          !value.contains(RegExp(r'[0-9]')) &&
+                                          !value.contains(RegExp(
+                                              r'[!@#$%^&*(),.?":{}|<>]'))) {
+                                        return 'Password must contain one upper case letter , one special sympol , one number at least ';
+                                      }
+                                      if (value.length < 8) {
+                                        return 'Password must be more than 8 ';
                                       }
                                       return null;
                                     },
@@ -177,8 +192,8 @@ class Login extends StatelessWidget {
                                           shape: MaterialStateProperty.all<
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(
-                                                  10.0), 
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
                                             ),
                                           ),
                                           backgroundColor:
@@ -186,13 +201,12 @@ class Login extends StatelessWidget {
                                                   Colors.transparent)),
                                       onPressed: () {
                                         if (name.currentState!.validate()) {
-                                           Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Landscreen()),
-                                        );
-                                        
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Landscreen()),
+                                          );
                                         }
                                       },
                                       child: const Text(

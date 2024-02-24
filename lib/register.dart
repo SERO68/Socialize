@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:register/landscreen.dart';
@@ -126,6 +128,13 @@ class Register extends StatelessWidget {
                                       if (value == null || value.isEmpty) {
                                         return 'Please enter your email address';
                                       }
+                                      value = value.trim();
+
+                                      if (value.length < 8 ||
+                                          !value.contains('@')) {
+                                        return 'Please enter a correct email address';
+                                      }
+
                                       return null;
                                     },
                                   ),
@@ -154,6 +163,7 @@ class Register extends StatelessWidget {
                                   TextFormField(
                                     obscureText: true,
                                     decoration: InputDecoration(
+                                        errorMaxLines: 2,
                                         constraints: BoxConstraints(
                                             maxWidth:
                                                 constraints.maxWidth - 40),
@@ -164,6 +174,15 @@ class Register extends StatelessWidget {
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Please enter your Password';
+                                      }
+                                      if (!value.contains(RegExp(r'[A-Z]')) &&
+                                          !value.contains(RegExp(r'[0-9]')) &&
+                                          !value.contains(RegExp(
+                                              r'[!@#$%^&*(),.?":{}|<>]'))) {
+                                        return 'Password must contain one upper case letter , one special sympol , one number at least ';
+                                      }
+                                      if (value.length < 8) {
+                                        return 'Password must be more than 8 ';
                                       }
                                       return null;
                                     },
@@ -184,6 +203,9 @@ class Register extends StatelessWidget {
                                             end: Alignment.centerRight)),
                                     child: ElevatedButton(
                                       style: ButtonStyle(
+                                          overlayColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.transparent),
                                           minimumSize:
                                               MaterialStateProperty.all(Size(
                                                   constraints.maxWidth - 40,
@@ -203,15 +225,13 @@ class Register extends StatelessWidget {
                                                   Colors.transparent)),
                                       onPressed: () {
                                         if (name.currentState!.validate()) {
-                                           Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Landscreen()),
-                                        );
-                                       
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Landscreen()),
+                                          );
                                         }
-                                       
                                       },
                                       child: const Text(
                                         'Sign up',
@@ -221,7 +241,7 @@ class Register extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 20,
+                                    height: 10,
                                   ),
                                   const Row(
                                     mainAxisAlignment:
@@ -254,7 +274,7 @@ class Register extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(
-                                    height: 20,
+                                    height: 10,
                                   ),
                                   Row(
                                     mainAxisAlignment:
